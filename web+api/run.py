@@ -38,6 +38,9 @@ def get_model():
     # model = load_model_on_gpus("THUDM/chatglm3-6b", num_gpus=2)
     return tokenizer, model
 
+# 加载Chatglm3的model和tokenizer
+tokenizer, model = get_model()
+
 # 初始化历史记录和past key values
 if "history" not in st.session_state:
     st.session_state.history = []
@@ -311,6 +314,4 @@ async def predict(model_id: str, params: dict):
 
 
 if __name__ == "__main__":
-    # 加载Chatglm3的model和tokenizer
-    tokenizer, model = get_model()
     uvicorn.run(app, host='0.0.0.0', port=8000, workers=1)
