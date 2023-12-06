@@ -5,3 +5,5 @@ RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple -r re
 EXPOSE 8501 8000
 ENV MODEL_PATH="./chatglm3-6b"
 CMD ["streamlit", "run", "./web+api/run.py"]
+HEALTHCHECK \
+  CMD curl -f http://localhost:8000/ && curl -f http://localhost:8501/ || exit 1
